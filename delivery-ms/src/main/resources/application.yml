@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: delivery-ms
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/delivery
+    username: root
+    password: password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+kafka:
+  topic:
+    new-stock: new-stock
+    stock-group: stock-group
+    reverse-stock: reverse-stock
+server:
+  port: 8081

@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: order-ms
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/orders
+    username: root
+    password: password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: orders-group
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+kafka:
+  topic:
+    new-order: new-order
+    reverse-order: reverse-order
+    reverse-order-group: reverse-order-group
+server:
+  port: 8082
